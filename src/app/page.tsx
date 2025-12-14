@@ -6,6 +6,7 @@ import { api, City, RouteComparison, CityData, ProgressEvent } from '@/lib/api'
 import RouteCard from '@/components/RouteCard'
 import ProgressDialog from '@/components/ProgressDialog'
 import { MapPin, Navigation, Info, Loader2 } from 'lucide-react'
+import Link from 'next/link'
 
 const Map = dynamic(() => import('@/components/Map'), { ssr: false })
 
@@ -118,14 +119,19 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
-              <MapPin className="w-6 h-6 text-white" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
+                <MapPin className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">GreenPath</h1>
+                <p className="text-sm text-gray-600">Shade & Walkability Navigator</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">GreenPath</h1>
-              <p className="text-sm text-gray-600">Shade & Walkability Navigator</p>
-            </div>
+            <Link href="/dashboard" className="px-4 py-2 bg-white text-green-600 border border-green-600 rounded-lg font-medium hover:bg-green-50 transition-colors">
+              View Analytics Dashboard
+            </Link>
           </div>
         </div>
       </header>
@@ -155,8 +161,8 @@ export default function Home() {
         )}
 
         {routes && (
-          <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
-            <h2 className="text-xl font-bold mb-4">Route Comparison</h2>
+          <div className="bg-white rounded-lg shadow-sm border p-6 mb-6 text-gray-900">
+            <h2 className="text-xl font-bold mb-4 text-gray-900">Route Comparison</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <RouteCard title="Cool Route" stats={routes.cool_route.properties} color="green" />
               <div className="flex flex-col justify-center space-y-3 text-sm">
@@ -176,7 +182,7 @@ export default function Home() {
 
         <div className="grid lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1 space-y-4">
-            <div className="bg-white rounded-lg shadow-sm border p-4">
+            <div className="bg-white rounded-lg shadow-sm border p-4 text-gray-900">
               <h3 className="font-bold mb-3">Select Points</h3>
               <div className="space-y-3">
                 <div className="flex gap-2">
@@ -189,7 +195,7 @@ export default function Home() {
                 <button onClick={clearPoints} className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg">Clear</button>
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-sm border p-4">
+            <div className="bg-white rounded-lg shadow-sm border p-4 text-gray-900">
               <h3 className="font-bold mb-3">Options</h3>
               <div className="space-y-2">
                 <label className="flex items-center gap-2"><input type="checkbox" checked={showHeatmap} onChange={(e) => setShowHeatmap(e.target.checked)} className="w-4 h-4" /><span className="text-sm">Show Heatmap</span></label>

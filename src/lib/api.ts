@@ -71,6 +71,7 @@ export interface ProgressEvent {
   error?: boolean
   data?: any
   timestamp: string
+  keepalive?: boolean
 }
 
 export class ApiService {
