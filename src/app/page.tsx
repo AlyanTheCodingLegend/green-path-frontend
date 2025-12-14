@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic'
 import { api, City, RouteComparison, CityData, ProgressEvent } from '@/lib/api'
 import RouteCard from '@/components/RouteCard'
 import ProgressDialog from '@/components/ProgressDialog'
+import AccessibilityControls from '@/components/AccessibilityControls'
+import PrivacySettings from '@/components/PrivacySettings'
 import { MapPin, Navigation, Info, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -160,6 +162,16 @@ export default function Home() {
           </div>
         )}
 
+        {routes && routes.comparison.used_fallback && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 flex items-start gap-3">
+            <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+            <div className="text-sm text-blue-800">
+              <p className="font-semibold mb-1">Quick heads up!</p>
+              <p>We tried finding a cooler route, but the fastest path is already your best bet for this trip. Sometimes the quickest way is the comfiest one too!</p>
+            </div>
+          </div>
+        )}
+
         {routes && (
           <div className="bg-white rounded-lg shadow-sm border p-6 mb-6 text-gray-900">
             <h2 className="text-xl font-bold mb-4 text-gray-900">Route Comparison</h2>
@@ -202,6 +214,8 @@ export default function Home() {
                 <label className="flex items-center gap-2"><input type="checkbox" checked={showBothRoutes} onChange={(e) => setShowBothRoutes(e.target.checked)} className="w-4 h-4" /><span className="text-sm">Both Routes</span></label>
               </div>
             </div>
+            <AccessibilityControls />
+            <PrivacySettings />
           </div>
           <div className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow-sm border p-4">
